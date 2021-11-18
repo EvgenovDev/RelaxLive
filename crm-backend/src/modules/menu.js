@@ -41,7 +41,7 @@ const menu = (classMenu) => {
         !e.target.closest(".popup-menu-main") ||
         e.target.classList.contains("menu-link")) && document.documentElement.clientWidth > 576) {
       menuDialog.classList.remove("popup-menu-dialog--active--big");
-      if (e.target.classList.contains("menu-link")) {
+      if (e.target.classList.contains("menu-link") && !e.target.classList.contains("no-overflow")) {
         e.preventDefault();
         scrolls(e.target, getIdLink);
       }
@@ -49,7 +49,7 @@ const menu = (classMenu) => {
         !e.target.closest(".popup-menu-main") ||
         e.target.classList.contains("menu-link")) && document.documentElement.clientWidth < 576) {
       menuDialog.classList.remove("popup-menu-dialog--active--small");
-      if (e.target.classList.contains("menu-link")) {
+      if (e.target.classList.contains("menu-link") && !e.target.classList.contains("no-overflow")) {
         e.preventDefault();
         scrolls(e.target, getIdLink);
       }

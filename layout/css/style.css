@@ -9062,3 +9062,14 @@ strong {
   opacity: 1;
   transition: 0.5s;
 }
+
+.popup-repair-types {
+  opacity: 0;
+  transition: 1s ease-in-out;
+}
+
+.popup-repair-types--active {
+  opacity: 1;
+  transition: 1s ease-in-out;
+  visibility: visible;
+}
