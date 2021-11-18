@@ -9052,4 +9052,13 @@ strong {
   transition: 0.5s;
 }
 
-;
+.popup-thank {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.popup-thank--active {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+}
