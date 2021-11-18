@@ -20,7 +20,7 @@ const menu = (classMenu) => {
   const addClassSmallOrBig = (event) => {
     if (document.documentElement.clientWidth > 576 && event.target === menuIcon) {
       menuDialog.classList.add("popup-menu-dialog--active--big");
-    } else if (document.documentElement.clientWidth < 576 && event.target === menuDialog) {
+    } else if (document.documentElement.clientWidth < 576 && event.target === menuIcon) {
       menuDialog.classList.add("popup-menu-dialog--active--small");
     }
   };
