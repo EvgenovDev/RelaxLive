@@ -19,6 +19,8 @@ const consultation = (classPopup) => {
         }
       });
 
+    } else {
+      throw Error("Класс модального окна консультации передан не верно");
     }
   } catch (error) {
     console.log(error.message);

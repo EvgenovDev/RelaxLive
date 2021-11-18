@@ -9036,3 +9036,20 @@ strong {
   transition: 0.5s;
   visibility: visible;
 }
+
+.link-privacy {
+  cursor: pointer;
+}
+
+.popup-privacy {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.popup-privacy--active {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+;
