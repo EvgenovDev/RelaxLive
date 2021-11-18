@@ -9025,3 +9025,14 @@ strong {
   opacity: 1;
   transition: 1s ease-in-out;
 }
+
+.popup-consultation {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.popup-consultation--active {
+  opacity: 1;
+  transition: 0.5s;
+  visibility: visible;
+}
