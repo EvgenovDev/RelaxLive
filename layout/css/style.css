@@ -4812,7 +4812,7 @@ div.wave-block:nth-child(17):after {
 
 .popup-dialog-menu {
   position: absolute;
-  visibility: visible;
+  visibility: hidden;
   top: 0;
   right: 0;
   -webkit-transform: translate3d(645px, 0, 0);
@@ -4847,6 +4847,7 @@ div.wave-block:nth-child(17):after {
     left: -5%;
     opacity: 0;
     z-index: -1;
+    visibility: hidden;
   }
 }
 
