@@ -28,7 +28,7 @@ const sendForm = (popupThankClass) => {
       })
       .then(() => {
         forms.forEach((elem) => {
-          elem.querySelectorAll(".input").forEach((input) => {
+          elem.querySelectorAll("input").forEach((input) => {
             input.value = "";
           });
         });
@@ -55,6 +55,7 @@ const sendForm = (popupThankClass) => {
   };
 
   const getInfoForm = (form) => {
+    let isNoValide = false;
     if (form.classList.contains("feedback__form")) {
       if (form.querySelector("input").value == "" && form.querySelector("input").value.length < 18) {
         return false;
@@ -66,15 +67,28 @@ const sendForm = (popupThankClass) => {
 
     } else if (form.classList.contains("feedback-block__form")) {
       for (let i = 0; i < form.querySelectorAll("input").length; i++) {
-        if (form.querySelectorAll("input")[i] == "" && form.querySelector("input")[i].value.length < 18) {
-          return false;
+        if (form.querySelectorAll("input")[i] == "") {
+          form.querySelectorAll("input")[i].classList.add("fail__input");
+          isNoValide = true;
+        }
+        if (form.querySelectorAll("input")[1].value.length < 18) {
+          form.querySelectorAll("input")[1].classList.add("fail__input");
+          isNoValide = true;
+        }
+        if (form.querySelectorAll("input")[0].value.length < 2) {
+          form.querySelectorAll("input")[0].classList.add("fail__input");
+          isNoValide = true;
         }
       }
 
-      return {
-        name: form.querySelectorAll("input")[0].value,
-        tel: form.querySelectorAll("input")[1].value
-      };
+      if (!isNoValide) {
+        return {
+          name: form.querySelectorAll("input")[0].value,
+          tel: form.querySelectorAll("input")[1].value
+        };
+      } else {
+        return false;
+      }
     }
   };
 
@@ -105,19 +119,8 @@ const sendForm = (popupThankClass) => {
                 },
                 url: "https://jsonplaceholder.typicode.com/posts"
               });
-            } else if (data) {
-              document.querySelectorAll(".checkbox__label").forEach((elem) => {
-                elem.classList.add("fail__checkbox");
-              });
-            } else if (!data && check.checked) {
-              elem.querySelectorAll("input").forEach((input) => {
-                input.classList.add("fail__input");
-              });
             } else {
-              elem.querySelectorAll("input").forEach((input) => {
-                input.classList.add("fail__input");
-              });
-              document.querySelectorAll(".checkbox__label").forEach((elem) => {
+              elem.querySelectorAll(".checkbox__label").forEach((elem) => {
                 elem.classList.add("fail__checkbox");
               });
             }
