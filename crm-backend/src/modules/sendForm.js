@@ -33,7 +33,7 @@ const sendForm = (popupThankClass) => {
           });
         });
         document.querySelectorAll(".checkbox__label").forEach((elem) => {
-          elem.querySelector("")
+          elem.querySelectorAll
         });
       })
       .catch((error) => {

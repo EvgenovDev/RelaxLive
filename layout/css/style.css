@@ -9073,3 +9073,7 @@ strong {
   transition: 1s ease-in-out;
   visibility: visible;
 }
+
+.fail__checkbox {
+  border: 2px solid red;
+}
