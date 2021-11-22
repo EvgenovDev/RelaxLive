@@ -26,6 +26,16 @@ const sendForm = (popupThankClass) => {
           document.querySelector(`.${popupThankClass}`).classList.remove("popup-thank--active");
         }, 3000);
       })
+      .then(() => {
+        forms.forEach((elem) => {
+          elem.querySelectorAll(".input").forEach((input) => {
+            input.value = "";
+          });
+        });
+        document.querySelectorAll(".checkbox__label").forEach((elem) => {
+          elem.querySelector("")
+        });
+      })
       .catch((error) => {
         console.log(error.message);
       });
@@ -72,6 +82,10 @@ const sendForm = (popupThankClass) => {
                 'Content-Type': 'application/json;charset=utf-8'
               },
               url: "https://jsonplaceholder.typicode.com/posts"
+            });
+          } else {
+            document.querySelectorAll(".checkbox__label").forEach((elem) => {
+              elem.classList.add("fail__checkbox");
             });
           }
         });

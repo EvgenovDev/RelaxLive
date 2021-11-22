@@ -1,6 +1,7 @@
 import togglePhoneNumber from "./modules/headerPhone";
 import menu from "./modules/menu";
 import popup from "./modules/popup";
+import repairInfo from "./modules/repairInfo";
 import sendForm from "./modules/sendForm";
 import validatePhone from "./modules/validatePhoneInput";
 
@@ -29,3 +30,11 @@ popup({
   closeClass: "close",
   modalClass: "popup-dialog-repair-types"
 });
+popup({
+  classPopup: "popup-repair-types",
+  otherItemsClass: "link-list-repair",
+  activeClass: "popup-repair-types--active",
+  closeClass: "close",
+  modalClass: "popup-dialog-repair-types"
+});
+repairInfo();
