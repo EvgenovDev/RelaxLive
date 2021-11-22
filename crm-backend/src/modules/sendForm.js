@@ -32,8 +32,8 @@ const sendForm = (popupThankClass) => {
             input.value = "";
           });
         });
-        document.querySelectorAll(".checkbox__label").forEach((elem) => {
-          elem.querySelectorAll
+        document.querySelectorAll(".checkbox>input").forEach((elem) => {
+          elem.checked = false;
         });
       })
       .catch((error) => {
@@ -56,10 +56,21 @@ const sendForm = (popupThankClass) => {
 
   const getInfoForm = (form) => {
     if (form.classList.contains("feedback__form")) {
+      if (form.querySelector("input").value == "" && form.querySelector("input").value.length < 18) {
+        return false;
+      }
+
       return {
         tel: form.querySelector("input").value
       };
+
     } else if (form.classList.contains("feedback-block__form")) {
+      for (let i = 0; i < form.querySelectorAll("input").length; i++) {
+        if (form.querySelectorAll("input")[i] == "" && form.querySelector("input")[i].value.length < 18) {
+          return false;
+        }
+      }
+
       return {
         name: form.querySelectorAll("input")[0].value,
         tel: form.querySelectorAll("input")[1].value
@@ -71,24 +82,48 @@ const sendForm = (popupThankClass) => {
     if (forms) {
       forms.forEach((elem) => {
         let check = elem.querySelector(".checkbox__input");
-        elem.querySelector("button").addEventListener("click", (e) => {
-          e.preventDefault();
-          if (check.checked) {
+        const checkBox = elem.querySelector(".checkbox__label");
+
+        elem.addEventListener("click", (e) => {
+          if (e.target == checkBox) {
+            if (checkBox.classList.contains("fail__checkbox")) {
+              checkBox.classList.remove("fail__checkbox");
+            }
+          } else if (e.target == elem.querySelectorAll("input")[0]) {
+            elem.querySelectorAll("input")[0].classList.remove("fail__input");
+          } else if (e.target == elem.querySelectorAll("input")[1]) {
+            elem.querySelectorAll("input")[1].classList.remove("fail__input");
+          } else if (e.target == elem.querySelector("button")) {
+            e.preventDefault();
             let data = getInfoForm(elem);
-            sendData({
-              data: data,
-              method: "POST",
-              header: {
-                'Content-Type': 'application/json;charset=utf-8'
-              },
-              url: "https://jsonplaceholder.typicode.com/posts"
-            });
-          } else {
-            document.querySelectorAll(".checkbox__label").forEach((elem) => {
-              elem.classList.add("fail__checkbox");
-            });
+            if (check.checked && data) {
+              sendData({
+                data: data,
+                method: "POST",
+                header: {
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+                url: "https://jsonplaceholder.typicode.com/posts"
+              });
+            } else if (data) {
+              document.querySelectorAll(".checkbox__label").forEach((elem) => {
+                elem.classList.add("fail__checkbox");
+              });
+            } else if (!data && check.checked) {
+              elem.querySelectorAll("input").forEach((input) => {
+                input.classList.add("fail__input");
+              });
+            } else {
+              elem.querySelectorAll("input").forEach((input) => {
+                input.classList.add("fail__input");
+              });
+              document.querySelectorAll(".checkbox__label").forEach((elem) => {
+                elem.classList.add("fail__checkbox");
+              });
+            }
           }
         });
+
       });
     } else {
       throw Error("Ни одной формы не существует");

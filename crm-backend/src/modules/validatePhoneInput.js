@@ -13,7 +13,7 @@ const validatePhone = (phoneClass) => {
       range.moveStart("character", pos);
       range.select();
     }
-  };
+  }
 
 
   function mask(event) {
