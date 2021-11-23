@@ -22,7 +22,7 @@ const simpleSlider = ({
       slide.classList.remove(slideActiveClass);
     });
     countSlide++;
-    if (countSlide < 6) {
+    if (countSlide < slides.length) {
       slides[countSlide].classList.add(slideActiveClass);
     } else {
       countSlide = 0;
@@ -38,7 +38,7 @@ const simpleSlider = ({
     if (countSlide >= 0) {
       slides[countSlide].classList.add(slideActiveClass);
     } else {
-      countSlide = 5;
+      countSlide = slides.length - 1;
       slides[countSlide].classList.add(slideActiveClass);
     }
   }
@@ -56,7 +56,9 @@ const simpleSlider = ({
           if (e.target.closest(`.${slideActiveClass}`)) {
             e.target.querySelector(`.${tooltipClass}`).classList.add(tooltipActiveClass);
           } else if (!e.target.closest(`.${slideActiveClass}`)) {
-            slider.querySelector(`.${tooltipActiveClass}`).classList.remove(tooltipActiveClass);
+            if (slider.querySelector(`.${tooltipActiveClass}`)) {
+              slider.querySelector(`.${tooltipActiveClass}`).classList.remove(tooltipActiveClass);
+            }
           }
         }
       });
