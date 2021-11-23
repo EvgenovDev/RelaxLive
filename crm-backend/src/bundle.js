@@ -70,3 +70,10 @@ simpleSlider({
   arrowLeftClass: "slider-arrow_left-formula",
   arrowRightClass: "slider-arrow_right-formula"
 });
+simpleSlider({
+  slideActiveClass: "reviews-slider__slide--active",
+  sliderClass: "reviews",
+  slideClass: "reviews-slider__slide",
+  arrowLeftClass: "slider-arrow_left",
+  arrowRightClass: "slider-arrow_right"
+});
