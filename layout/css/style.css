@@ -1259,7 +1259,11 @@ template,
   z-index: 0;
 }
 
-
+@media (min-width: 1025px) {
+  .formula-item {
+    display: flex;
+  }
+}
 
 .formula-item strong {
   font-weight: 500;
