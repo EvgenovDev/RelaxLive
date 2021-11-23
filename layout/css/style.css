@@ -2532,6 +2532,7 @@ div.wave-block:nth-child(17):after {
   .transparency-item {
     margin-left: auto;
     margin-right: auto;
+    display: none;
   }
 }
 
@@ -9129,5 +9130,9 @@ strong {
 }
 
 .reviews-slider__slide--active {
+  display: flex;
+}
+
+.transparency-item--active {
   display: flex;
 }

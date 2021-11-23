@@ -77,3 +77,12 @@ simpleSlider({
   arrowLeftClass: "slider-arrow_left",
   arrowRightClass: "slider-arrow_right"
 });
+if (document.documentElement.clientWidth <= 1090) {
+  simpleSlider({
+    sliderClass: "transparency",
+    slideClass: "transparency-item",
+    arrowLeftClass: "slider-arrow_left",
+    arrowRightClass: "slider-arrow_right",
+    slideActiveClass: "transparency-item--active"
+  });
+}
