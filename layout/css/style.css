@@ -2318,6 +2318,8 @@ div.wave-block:nth-child(17):after {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   max-height: 504px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
 .portfolio-slider__slide-frame {
@@ -8220,9 +8222,7 @@ div.wave-block:nth-child(17):after {
   }
 }
 
-#portfolio-arrow_left {
-  display: none;
-}
+#portfolio-arrow_left {}
 
 @media (max-width: 900px) {
   #portfolio-arrow_left {
@@ -9081,4 +9081,24 @@ strong {
 .fail__input {
   border: 2px solid red;
   border-radius: 5px;
+}
+
+.portfolio-slide--active {
+  opacity: 1;
+  transition: all 2s ease-in-out;
+}
+
+.arrow-hidden {
+  display: none;
+}
+
+.popup-portfolio {
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+
+.popup-portfolio--active {
+  opacity: 1;
+  transition: all 1s ease-in-out;
+  visibility: visible;
 }

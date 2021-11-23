@@ -1,6 +1,8 @@
+import faq from "./modules/FAQ";
 import togglePhoneNumber from "./modules/headerPhone";
 import menu from "./modules/menu";
 import popup from "./modules/popup";
+import portfolioSlider from "./modules/portfolioSlider";
 import repairInfo from "./modules/repairInfo";
 import sendForm from "./modules/sendForm";
 import validatePhone from "./modules/validatePhoneInput";
@@ -37,4 +39,16 @@ popup({
   closeClass: "close",
   modalClass: "popup-dialog-repair-types"
 });
+popup({
+  classPopup: "popup-portfolio",
+  otherItemsClass: "portfolio-slider__slide-frame",
+  activeClass: "popup-portfolio--active",
+  closeClass: "close",
+  modalClass: "popup-dialog-portfolio"
+});
 repairInfo();
+portfolioSlider("portfolio-slider-wrap");
+faq({
+  elemsClass: "accordion>ul>li",
+  activeClass: "msg-active"
+});
