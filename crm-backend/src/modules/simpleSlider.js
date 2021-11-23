@@ -7,7 +7,9 @@ const simpleSlider = ({
   slideClass,
   arrowLeftClass,
   arrowRightClass,
-  slideActiveClass
+  slideActiveClass,
+  tooltipClass,
+  tooltipActiveClass
 }) => {
   const slider = document.querySelector(`.${sliderClass}`);
   const slides = slider.querySelectorAll(`.${slideClass}`);
@@ -48,6 +50,14 @@ const simpleSlider = ({
           nextSlide();
         } else if (e.target.closest(`.${arrowLeftClass}`)) {
           prevSlide();
+        }
+
+        if (tooltipClass && tooltipActiveClass) {
+          if (e.target.closest(`.${slideActiveClass}`)) {
+            e.target.querySelector(`.${tooltipClass}`).classList.add(tooltipActiveClass);
+          } else if (!e.target.closest(`.${slideActiveClass}`)) {
+            slider.querySelector(`.${tooltipActiveClass}`).classList.remove(tooltipActiveClass);
+          }
         }
       });
     }

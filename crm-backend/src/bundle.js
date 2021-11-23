@@ -62,6 +62,8 @@ tooltip({
   tooltipClassBottom: "tooltip_bottom"
 });
 simpleSlider({
+  tooltipClass: "formula-item-popup",
+  tooltipActiveClass: "tooltip--active",
   slideActiveClass: "formula-item--active",
   sliderClass: "formula",
   slideClass: "formula-slider__slide",
