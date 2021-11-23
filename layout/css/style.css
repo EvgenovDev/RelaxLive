@@ -1131,6 +1131,7 @@ template,
   margin-right: auto;
   opacity: 0.4;
   font-size: 18px;
+  display: none;
 }
 
 .formula-slider__slide:before {
@@ -1239,7 +1240,7 @@ template,
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -1257,6 +1258,8 @@ template,
   color: #000000;
   z-index: 0;
 }
+
+
 
 .formula-item strong {
   font-weight: 500;
@@ -9101,4 +9104,22 @@ strong {
   opacity: 1;
   transition: all 1s ease-in-out;
   visibility: visible;
+}
+
+.tooltip--active {
+  visibility: visible;
+  opacity: 1;
+  transition: 1s ease;
+}
+
+.tooltip_bottom {}
+
+.tooltip_bottom:before {
+  transform: rotate(180deg);
+}
+
+.formula-item--active {
+  display: flex;
+  opacity: 1;
+  transition: 1s ease;
 }

@@ -1,3 +1,7 @@
+import {
+  throttle
+} from "./helpers";
+
 const portfolioSlider = (sliderClass) => {
   const portfolioSlider = document.querySelector(`.${sliderClass}`);
   const arrows = portfolioSlider.querySelectorAll(".slider-arrow");
@@ -6,25 +10,6 @@ const portfolioSlider = (sliderClass) => {
   let countSlide = 0;
 
   try {
-    function throttle(fn, ms) {
-      let isRun = false;
-
-      function wrap() {
-        if (isRun) {
-          return;
-        }
-
-        fn.apply(this, arguments);
-        isRun = true;
-
-        setTimeout(() => {
-          isRun = false;
-        }, ms);
-      }
-
-      return wrap;
-    }
-
     function nextSlide() {
       portfolioSlider.querySelectorAll(".portfolio-slider__slide").forEach((elem) => {
         if (elem.classList.contains("portfolio-slide--active")) {

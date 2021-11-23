@@ -38,7 +38,6 @@ const menu = (classMenu) => {
 
   mainMenu.addEventListener("click", (e) => {
     if ((e.target.classList.contains("close-menu") ||
-        !e.target.closest(".popup-menu-main") ||
         e.target.classList.contains("menu-link")) && document.documentElement.clientWidth > 576) {
       menuDialog.classList.remove("popup-menu-dialog--active--big");
       if (e.target.classList.contains("menu-link") && !e.target.classList.contains("no-overflow")) {
@@ -46,7 +45,6 @@ const menu = (classMenu) => {
         scrolls(e.target, getIdLink);
       }
     } else if ((e.target.classList.contains("close-menu") ||
-        !e.target.closest(".popup-menu-main") ||
         e.target.classList.contains("menu-link")) && document.documentElement.clientWidth < 576) {
       menuDialog.classList.remove("popup-menu-dialog--active--small");
       if (e.target.classList.contains("menu-link") && !e.target.classList.contains("no-overflow")) {

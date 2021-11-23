@@ -5,6 +5,8 @@ import popup from "./modules/popup";
 import portfolioSlider from "./modules/portfolioSlider";
 import repairInfo from "./modules/repairInfo";
 import sendForm from "./modules/sendForm";
+import simpleSlider from "./modules/simpleSlider";
+import tooltip from "./modules/tooltip";
 import validatePhone from "./modules/validatePhoneInput";
 
 togglePhoneNumber("header-contacts__phone-number", "header-contacts__arrow");
@@ -51,4 +53,18 @@ portfolioSlider("portfolio-slider-wrap");
 faq({
   elemsClass: "accordion>ul>li",
   activeClass: "msg-active"
+});
+tooltip({
+  sectionClass: "formula>.mobile-hide",
+  elementsClass: "formula-item__icon",
+  tooltipActiveClass: "tooltip--active",
+  tooltipClass: "formula-item-popup",
+  tooltipClassBottom: "tooltip_bottom"
+});
+simpleSlider({
+  slideActiveClass: "formula-item--active",
+  sliderClass: "formula",
+  slideClass: "formula-slider__slide",
+  arrowLeftClass: "slider-arrow_left-formula",
+  arrowRightClass: "slider-arrow_right-formula"
 });
