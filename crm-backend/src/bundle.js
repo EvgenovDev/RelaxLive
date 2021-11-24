@@ -2,6 +2,7 @@ import faq from "./modules/FAQ";
 import togglePhoneNumber from "./modules/headerPhone";
 import menu from "./modules/menu";
 import popup from "./modules/popup";
+import popupPortfolio from "./modules/popupPortfolio";
 import portfolioSlider from "./modules/portfolioSlider";
 import repairInfo from "./modules/repairInfo";
 import sendForm from "./modules/sendForm";
@@ -41,13 +42,7 @@ popup({
   closeClass: "close",
   modalClass: "popup-dialog-repair-types"
 });
-popup({
-  classPopup: "popup-portfolio",
-  otherItemsClass: "portfolio-slider__slide-frame",
-  activeClass: "popup-portfolio--active",
-  closeClass: "close",
-  modalClass: "popup-dialog-portfolio"
-});
+popupPortfolio();
 popup({
   activeClass: "transparency--active",
   classPopup: "popup-transparency",
