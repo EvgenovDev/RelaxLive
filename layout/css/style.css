@@ -1697,6 +1697,7 @@ template,
 
 @media (max-width: 1024px) {
   .repair-types-nav__item {
+    display: none;
     height: 37px;
     line-height: 37px;
     font-size: 16px;
@@ -1706,6 +1707,19 @@ template,
   .repair-types-nav__item svg {
     height: 37px;
   }
+
+  .repair-types-nav__item--active {
+    display: block;
+  }
+
+  .repair-types-nav {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-wrap .nav-list-repair {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 575px) {
@@ -1714,10 +1728,24 @@ template,
     line-height: 33px;
     font-size: 14px;
     margin-top: 0;
+    display: none;
   }
 
   .repair-types-nav__item svg {
     height: 33px;
+  }
+
+  .repair-types-nav__item--active {
+    display: block;
+  }
+
+  .repair-types-nav {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-wrap .nav-list-repair {
+    justify-content: center;
   }
 }
 
@@ -9158,4 +9186,20 @@ strong {
   display: block;
   opacity: 1;
   transition: 1s ease;
+}
+
+.type-slide {
+  display: none;
+}
+
+.type-slide--active {
+  display: block;
+}
+
+.repair-types-slider__slide {
+  display: none;
+}
+
+.repair-types-slider__slide--active {
+  display: block;
 }

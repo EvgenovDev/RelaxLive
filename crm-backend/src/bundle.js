@@ -92,6 +92,14 @@ if (document.documentElement.clientWidth <= 1090) {
     arrowRightClass: "slider-arrow_right",
     slideActiveClass: "transparency-item--active"
   });
+  simpleSlider({
+    arrowLeftClass: "nav-arrow_left",
+    arrowRightClass: "nav-arrow_right",
+    sliderClass: "repair-types",
+    slideActiveClass: "repair-types-nav__item--active",
+    slideClass: "repair-types-nav__item"
+  });
+  document.querySelector(".repair-types-nav__item").classList.remove("active");
 }
 simpleSlider({
   sliderClass: "popup-transparency",
@@ -99,4 +107,17 @@ simpleSlider({
   arrowLeftClass: "popup-arrow_transparency_left",
   arrowRightClass: "popup-arrow_transparency_right",
   slideActiveClass: "popup-transparency-slider__slide--active"
+});
+simpleSlider({
+  sliderClass: "repair-types",
+  arrowLeftClass: "slider-arrow_left",
+  arrowRightClass: "slider-arrow_right",
+  allSlidesTabClass: "type-slide",
+  tabsClass: "repair-types-nav__item",
+  slideClass: "repair-types-slider__slide",
+  activeTabClass: "active",
+  activeSliderClass: "type-slide--active",
+  slideActiveClass: "repair-types-slider__slide--active",
+  paginationCurrentClass: "slider-counter-content__current",
+  paginationTotalClass: "slider-counter-content__total"
 });
