@@ -23,15 +23,21 @@ const simpleSlider = ({
   const arrowRight = slider.querySelector(`.${arrowRightClass}`);
   const tabs = document.querySelectorAll(`.${tabsClass}`);
   const allSlidesTab = document.querySelectorAll(`.${allSlidesTabClass}`);
-  const paginationCurrent = document.querySelector(`.${paginationCurrentClass}`);
-  const paginationTotal = document.querySelector(`.${paginationTotalClass}`);
+  const paginationCurrent = slider.querySelector(`.${paginationCurrentClass}`);
+  const paginationTotal = slider.querySelector(`.${paginationTotalClass}`);
   let countSlide = 0;
 
   function renderPagination() {
-    const activeSlider = slider.querySelector(`.${activeSliderClass}`);
-    const arraySlides = activeSlider.querySelectorAll(`.${slideClass}`);
-    paginationTotal.textContent = arraySlides.length;
-    paginationCurrent.textContent = countSlide + 1;
+    if (activeSliderClass) {
+      const activeSlider = slider.querySelector(`.${activeSliderClass}`);
+      const arraySlides = activeSlider.querySelectorAll(`.${slideClass}`);
+      paginationTotal.textContent = arraySlides.length;
+      paginationCurrent.textContent = countSlide + 1;
+    } else {
+      const arraySlides = slider.querySelectorAll(`.${slideClass}`);
+      paginationTotal.textContent = arraySlides.length;
+      paginationCurrent.textContent = countSlide + 1;
+    }
   }
 
   function showCurrentSliderTab(dataName, sliders) {
@@ -112,11 +118,21 @@ const simpleSlider = ({
 
   try {
     if (slides && arrowLeft && arrowRight && !tabsClass) {
+      if (paginationCurrent && paginationTotal) {
+        renderPagination();
+      }
+
       slider.addEventListener("click", (e) => {
         if (e.target.closest(`.${arrowRightClass}`)) {
           nextSlide();
+          if (paginationCurrent && paginationTotal) {
+            renderPagination();
+          }
         } else if (e.target.closest(`.${arrowLeftClass}`)) {
           prevSlide();
+          if (paginationCurrent && paginationTotal) {
+            renderPagination();
+          }
         }
 
         if (tooltipClass && tooltipActiveClass) {

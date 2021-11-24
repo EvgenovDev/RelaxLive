@@ -106,7 +106,9 @@ simpleSlider({
   slideClass: "popup-transparency-slider__slide",
   arrowLeftClass: "popup-arrow_transparency_left",
   arrowRightClass: "popup-arrow_transparency_right",
-  slideActiveClass: "popup-transparency-slider__slide--active"
+  slideActiveClass: "popup-transparency-slider__slide--active",
+  paginationCurrentClass: "slider-counter-content__current",
+  paginationTotalClass: "slider-counter-content__total"
 });
 simpleSlider({
   sliderClass: "repair-types",
