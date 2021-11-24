@@ -48,6 +48,13 @@ popup({
   closeClass: "close",
   modalClass: "popup-dialog-portfolio"
 });
+popup({
+  activeClass: "transparency--active",
+  classPopup: "popup-transparency",
+  otherItemsClass: "transparency-item__img",
+  closeclass: "close",
+  modalClass: "popup-dialog-transparency"
+});
 repairInfo();
 portfolioSlider("portfolio-slider-wrap");
 faq({
@@ -86,3 +93,10 @@ if (document.documentElement.clientWidth <= 1090) {
     slideActiveClass: "transparency-item--active"
   });
 }
+simpleSlider({
+  sliderClass: "popup-transparency",
+  slideClass: "popup-transparency-slider__slide",
+  arrowLeftClass: "popup-arrow_transparency_left",
+  arrowRightClass: "popup-arrow_transparency_right",
+  slideActiveClass: "popup-transparency-slider__slide--active"
+});
