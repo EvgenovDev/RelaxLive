@@ -535,10 +535,6 @@ body {
 
 /*   Модальное окно   */
 
-#modal {
-  display: none;
-}
-
 .modal {
   display: flex;
   flex-direction: column;
@@ -551,7 +547,6 @@ body {
 }
 
 .modal__overlay {
-  display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -561,6 +556,9 @@ body {
   bottom: 0;
   background-color: rgba(51, 51, 51, .6);
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
 .modal__header {
@@ -589,4 +587,10 @@ body {
 .success {
   border: 2px solid rgb(4, 236, 4);
   border-radius: 10px;
+}
+
+.show-modal {
+  display: flex;
+  opacity: 1;
+  transition: 1s ease;
 }
