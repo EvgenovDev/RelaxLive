@@ -1,11 +1,7 @@
 <?php
-// на какие данные рассчитан этот скрипт
-header("Content-Type: application/json");
-// разбираем JSON-строку на составляющие встроенной командой
-$data = json_decode(file_get_contents("php://input"));
-// отправляем в ответ строку с подтверждением
-echo "Сервер получил следующие данные: имя — $data->name, фамилия — $data->lastname";
+session_start();
 
-// <!-- <?php 
-// sleep (1);
-// echo $_SERVER[‘REMOTE_ADDR‘]; -->
+if (!$_SESSION['admin']) {
+	header("Location: admin/index.html");
+	exit;
+}
