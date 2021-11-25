@@ -3,6 +3,11 @@ const tableBody = document.querySelector("#tbody");
 const tr = document.querySelector(".table__row");
 const button = document.querySelector(".btn-addItem");
 const popup = document.querySelector(".modal__overlay");
+let isNewElement = true;
+
+function getServices(url) {
+  return fetch(url);
+}
 
 function getData(url) {
   return fetch(url);
@@ -39,6 +44,27 @@ function renderTable(array) {
     newTr.querySelector(".table-units").textContent = elem.units;
     newTr.querySelector(".table-cost").textContent = elem.cost + "руб";
     tableBody.append(newTr);
+  });
+
+  const changeButtons = document.querySelectorAll(".action-change");
+  changeButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const currentElem = e.target.closest(".table__row");
+      const idElem = currentElem.querySelector(".table__id").textContent;
+      modal.classList.add("show-modal");
+      modal.querySelector(".modal__header").textContent = "Редактировать услугу";
+      getServices(`http://localhost:3000/api/items/${idElem}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          const currentInputs = modal.querySelectorAll("input");
+          currentInputs[0].value = data.type;
+          currentInputs[1].value = data.name;
+          currentInputs[2].value = data.units;
+          currentInputs[3].value = data.cost;
+        });
+    });
   });
 }
 
@@ -85,6 +111,7 @@ if (!document.cookie || document.cookie !== "admin=true") {
   button.addEventListener("click", (e) => {
     e.preventDefault();
     modal.classList.add("show-modal");
+    modal.querySelector(".modal__header").textContent = "Добавление новой услуги";
   });
 
   modal.addEventListener("click", (e) => {
