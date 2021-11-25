@@ -46,5 +46,4 @@ button.addEventListener("click", (e) => {
       window.location.href = `${document.location.href}/../table.html`;
     }, 2000);
   }
-
 });
