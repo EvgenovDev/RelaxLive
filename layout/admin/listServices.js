@@ -2,8 +2,26 @@ const select = document.querySelector("select");
 const tableBody = document.querySelector("#tbody");
 const tr = document.querySelector(".table__row");
 const button = document.querySelector(".btn-addItem");
-const popup = document.querySelector(".modal__overlay");
+const modal = document.querySelector(".modal__overlay");
 let isNewElement = true;
+
+function getInfoModal(modal) {
+  const currentInputs = modal.querySelectorAll("input");
+
+  return {
+    type: currentInputs[0].value,
+    name: currentInputs[1].value,
+    units: currentInputs[2].value,
+    cost: +currentInputs[3].value
+  };
+}
+
+const changeElement = (data, id) => {
+  return fetch(`http://localhost:3000/api/items/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(data)
+  });
+};
 
 function getServices(url) {
   return fetch(url);
@@ -49,7 +67,8 @@ function renderTable(array) {
   const changeButtons = document.querySelectorAll(".action-change");
   changeButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
-      const currentElem = e.target.closest(".table__row");
+      isNewElement = false;
+      const currentElem = e.target.closest(".table__row")
       const idElem = currentElem.querySelector(".table__id").textContent;
       modal.classList.add("show-modal");
       modal.querySelector(".modal__header").textContent = "Редактировать услугу";
@@ -64,6 +83,37 @@ function renderTable(array) {
           currentInputs[2].value = data.units;
           currentInputs[3].value = data.cost;
         });
+
+      modal.querySelector(".button-ui_firm").addEventListener("click", (e) => {
+        if (!isNewElement) {
+          e.preventDefault();
+          let data = getInfoModal(modal);
+          changeElement(data, idElem)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              modal.querySelectorAll("input").forEach((input) => {
+                input.value = "";
+              });
+              modal.classList.remove("show-modal");
+              getData("http://localhost:3000/api/items")
+                .then((response) => {
+                  return response.json();
+                })
+                .then((data) => {
+                  const valueOption = select[select.selectedIndex].value;
+
+                  let arrForTable = [];
+                  arrForTable = data.filter(elem => elem.type == valueOption);
+                  clear(tableBody);
+                  renderTable(arrForTable);
+                });
+            });
+        }
+      }, {
+        once: true
+      });
     });
   });
 }
@@ -112,6 +162,7 @@ if (!document.cookie || document.cookie !== "admin=true") {
     e.preventDefault();
     modal.classList.add("show-modal");
     modal.querySelector(".modal__header").textContent = "Добавление новой услуги";
+    isNewElement = true;
   });
 
   modal.addEventListener("click", (e) => {
@@ -119,43 +170,40 @@ if (!document.cookie || document.cookie !== "admin=true") {
       e.preventDefault();
       modal.classList.remove("show-modal");
     } else if (e.target.closest(".button-ui_firm")) {
-      e.preventDefault();
-      const inputs = modal.querySelectorAll("input");
-      const data = {
-        type: inputs[0].value,
-        name: inputs[1].value,
-        units: inputs[2].value,
-        cost: +inputs[3].value
-      };
-      setNewServices("http://localhost:3000/api/items", data, "POST");
-      getData("http://localhost:3000/api/items")
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          let arr = [];
-          if (data[0]) {
-            let type = data[0].name;
-            arr = data.filter((elem) => {
-              if (elem.type != type) {
-                type = elem.type;
-                return elem.type;
-              }
-            });
-            renderSelectOption(arr);
-          }
-          select.selectedIndex = select.options.length - 1;
-          const valueOption = select[select.selectedIndex].value;
+      if (isNewElement) {
+        e.preventDefault();
+        const inputs = modal.querySelectorAll("input");
+        const data = getInfoModal(modal);
+        setNewServices("http://localhost:3000/api/items", data, "POST");
+        getData("http://localhost:3000/api/items")
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            let arr = [];
+            if (data[0]) {
+              let type = data[0].name;
+              arr = data.filter((elem) => {
+                if (elem.type != type) {
+                  type = elem.type;
+                  return elem.type;
+                }
+              });
+              renderSelectOption(arr);
+            }
+            select.selectedIndex = select.options.length - 1;
+            const valueOption = select[select.selectedIndex].value;
 
-          let arrForTable = [];
-          arrForTable = data.filter(elem => elem.type == valueOption);
-          clear(tableBody);
-          renderTable(arrForTable);
-          inputs.forEach((input) => {
-            input.value = "";
+            let arrForTable = [];
+            arrForTable = data.filter(elem => elem.type == valueOption);
+            clear(tableBody);
+            renderTable(arrForTable);
+            inputs.forEach((input) => {
+              input.value = "";
+            });
+            modal.classList.remove("show-modal");
           });
-          modal.classList.remove("show-modal");
-        });
+      }
     }
   });
 }
