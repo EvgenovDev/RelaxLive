@@ -5,6 +5,12 @@ const button = document.querySelector(".btn-addItem");
 const modal = document.querySelector(".modal__overlay");
 let isNewElement = true;
 
+function deleteElem(url) {
+  return fetch(url, {
+    method: "DELETE"
+  });
+}
+
 function getInfoModal(modal) {
   const currentInputs = modal.querySelectorAll("input");
 
@@ -65,6 +71,7 @@ function renderTable(array) {
   });
 
   const changeButtons = document.querySelectorAll(".action-change");
+  const deleteButtons = document.querySelectorAll(".action-remove");
   changeButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       isNewElement = false;
@@ -116,6 +123,31 @@ function renderTable(array) {
       });
     });
   });
+
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const currentElem = e.target.closest(".table__row");
+      const idElem = currentElem.querySelector(".table__id").textContent;
+      deleteElem(`http://localhost:3000/api/items/${idElem}`)
+        .then(() => {
+          getData("http://localhost:3000/api/items")
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              const valueOption = select[select.selectedIndex].value;
+
+              let arrForTable = [];
+              arrForTable = data.filter(elem => elem.type == valueOption);
+              clear(tableBody);
+              renderTable(arrForTable);
+            });
+        });
+    });
+  }, {
+    once: true
+  })
+
 }
 
 if (!document.cookie || document.cookie !== "admin=true") {
